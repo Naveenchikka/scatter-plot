@@ -44,12 +44,13 @@ private drawPlot(): void {
   // .attr("transform", "translate(0," + this.height + ")")
   // .call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(6));
 
-  this.svg.append("g")
-  .attr("transform", "translate(0," + this.height + ")")
+  var xaxis = this.svg.append("g").attr("transform", "translate(0," + this.height + ")")
   .call(d3.axisBottom(x).tickSize(-this.height, 0, 0)
-  .tickFormat(d3.format("d")).ticks(6)).attr("fill", "rgba(66,139,202, 0.2)");
-
- ;
+  .tickFormat(d3.format("d")).ticks(6)).attr("fill", "rgba(66,139,202, 0.2)").append("line").style({
+    fill:"rgba(128, 128, 128, 0.781)"
+  });
+ 
+  
   // Add Y axis
   const y = d3.scaleLinear()
   .domain([0, 60])
