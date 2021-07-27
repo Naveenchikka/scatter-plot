@@ -46,10 +46,11 @@ private drawPlot(): void {
 
   this.svg.append("g").attr("transform", "translate(0," + this.height + ")")
   .call(d3.axisBottom(x).tickSize(-this.height, 0, 0)
-  .tickFormat(d3.format("d")).tickPadding(15).ticks(6)).attr("fill", "rgba(66,139,202, 0.2)");
+  .tickFormat(d3.format("d")).tickPadding(15).ticks(6));
  
   this.svg.style('color','#8C8C8C')
   .style('stroke-opacity', 0.6)
+
   // Add Y axis
   const y = d3.scaleLinear()
   .domain([0, 60])
@@ -57,6 +58,15 @@ private drawPlot(): void {
   this.svg.append("g")
   .call(d3.axisLeft(y).tickSize(-this.width, 0, 0)
   .tickFormat(d3.format("d")).tickPadding(15).ticks(5));
+  
+  this.svg.select('rect .background')
+       .append('rect')
+       .classed('background', true)
+       .attr('y', 30)
+       .attr('x', 10)
+       .attr('height', 150)
+       .attr('width', 250)
+       .attr('fill', 'red');
 
   // Add dots
   const dots = this.svg.append('g');
@@ -78,5 +88,8 @@ private drawPlot(): void {
   .text(d => d.Framework)
   .attr("x", d => x(d.Released))
   .attr("y", d => y(d.Stars))
+
+  this.svg.
+  attr("fill", "rgba(66,139,202, 0.2)");
 }
 }
