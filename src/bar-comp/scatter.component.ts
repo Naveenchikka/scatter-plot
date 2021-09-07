@@ -28,10 +28,40 @@ export class ScatterComponent implements OnInit {
   private createSvg(): void {
     this.svg = d3.select("figure#scatter")
     .append("svg")
+    .attr("style", "float:left")
+    .attr("style", "overflow:visible")
     .attr("width", this.width + (this.margin * 2))
     .attr("height", this.height + (this.margin * 2))
     .append("g")
     .attr("transform", "translate(" + this.margin + "," + this.margin + ")");
+
+    this.svg.append("rect")
+    .attr("x", 0)
+    .attr("y", 150)
+    .attr("height", this.height / 2)
+    .attr("width", this.width / 2)
+    .style("fill", "#E183D6")
+
+    this.svg.append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("height", (this.height / 2)+1)
+    .attr("width", this.width / 2)
+    .style("fill", "#9657D5")
+
+    this.svg.append("rect")
+    .attr("x", 250)
+    .attr("y", 150)
+    .attr("height", (this.height / 2)+1)
+    .attr("width", (this.width / 2))
+    .style("fill", "#9657D5")
+
+    this.svg.append("rect")
+    .attr("x", 250)
+    .attr("y", 0)
+    .attr("height", (this.height / 2)+1)
+    .attr("width", (this.width / 2)+1)
+    .style("fill", "#67b7dc")
 }
 
 private drawPlot(): void {
